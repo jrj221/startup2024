@@ -5,7 +5,7 @@
 A popular event for High School seniors across the country is Senior Assassin, in which dozens of students are assigned targets among each other who they have to 'eliminate' (with nerf guns) in a certain time period (ex. a week). Whoever lasts longest without being eliminated is declared winner. Usually one or more students organizes this game themselves, taking it upon themselves to assign new targets manually each week. This application is meant to do that work for them, assigning targets and then tracking user submissions of which participants have been eliminated. 
 
 ### Design
-![Design mockup for main application page.](260applicationMockup.heic)
+![Design mockup for main application page.](260applicationMockup.jpg)
 
 ### Key Features
 * Secure login to prevent unwanted eyes seeing your target
