@@ -4,7 +4,10 @@ to ssh into your production environment server use this console command:<br>
 ssh -i documents/cs260/supersecret.pem ubuntu@seniorassassingame.click
 
 Public IP address --> 54.89.219.9 <br>
-DNS (Domain Name System) connects the domain seniorassasin.click to that IP address 
+DNS (Domain Name System) connects the domain seniorassasingame.click to that IP address 
+
+DEPLOY FILES
+./deployFiles.sh -k ~/Documents/cs260/supersecret.pem -h seniorassassingame.click -s startup
 
 Caddy is a web service that receives an HTTP request and routes it to other stuff. Not really sure how it all works. 
 
@@ -69,4 +72,5 @@ HTML MEDIA
     Autoplay is an attribute
 <svg></svg> is a Scalable Vector Graphics which lets you create an image within your HTML
 <canvas> is another within-HTML image creator that uses JavaScript
+
 

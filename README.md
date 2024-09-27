@@ -23,3 +23,14 @@ I will use the required technologies in these ways:
 * **Web Service -** Remote functions include allowing chatting with other agents, saving your elimination status, and saving notes.
 * **DB/Login -** Stores login information, without which most features aren't available. Stores chats and notes.
 * **WebSocket -** Renders latest Agent Statuses (who has been eliminated), displaying a realtime countdown, and displaying chats with other agents.
+
+## HTML deliverable
+
+For this deliverable I built out the structure of my application using HTML.
+
+- [x] **HTML pages** - Two HTML page that represent the ability to login and vote.
+- [x] **Links** - The login page automatically links to the voter page. The voter page contains links for every voting choice.
+- [x] **Text** - Each of the voting choices is represented by a textual description.
+- [ ] **Images** - I couldn't figure out how to include an image and so I didn't do this. 😔
+- [x] **DB/Login** - Input box and submit button for login. The voting choices represent data pulled from the database.
+- [x] **WebSocket** - The count of voting results represent the tally of realtime votes.
