@@ -28,9 +28,9 @@ I will use the required technologies in these ways:
 
 For this deliverable I built out the structure of my application using HTML.
 
-- [x] **HTML pages** - Two HTML page that represent the ability to login and vote.
-- [x] **Links** - The login page automatically links to the voter page. The voter page contains links for every voting choice.
-- [x] **Text** - Each of the voting choices is represented by a textual description.
-- [ ] **Images** - I couldn't figure out how to include an image and so I didn't do this. 😔
-- [x] **DB/Login** - Input box and submit button for login. The voting choices represent data pulled from the database.
-- [x] **WebSocket** - The count of voting results represent the tally of realtime votes.
+- [x] **HTML pages** - Four HTML pages: Home, Chats, Leaderboard, and Notes.
+- [x] **Links** - Nav bar has links to all different pages of the website. A link can take you to a registration page. I may end up restricting certain links to after login has been completed, but haven't implemented that yet.
+- [x] **Text** - Throughout the website text explains what different pages are for, placeholders, and examples of what they might display.
+- [x] **Images** - Haven't created a permanent site image, but I used a random AI image to show that I know how to implement an image in HTML.
+- [x] **DB/Login** - Input box and submit button for login. Created a database placeholder in leaderboard.html to show how that might be used eventually.
+- [x] **WebSocket** - Created a placeholder in the chat.html page to show where that technology might be used in the future.
