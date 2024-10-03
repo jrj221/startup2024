@@ -9,3 +9,18 @@
   color: green;
   font-weight: bold;
 }
+body {
+  display: flex;
+  margin: 0;
+  height: 100vh;
+  flex-direction: column;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+}
+h1 {
+  margin: 0;
+  width: auto;
+}
