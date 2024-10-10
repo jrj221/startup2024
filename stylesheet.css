@@ -1,3 +1,6 @@
+body {
+  background-color: red;
+}
 nav.bg-dark{
   background-color: red !important;
 } 
@@ -12,6 +15,7 @@ h3 {
 }
 a {
   color: black !important;
+  text-decoration: none;
 }
 ul {
   margin: 0;
@@ -19,4 +23,15 @@ ul {
 main {
   margin-top: 100px;
   padding: 10px;
+  background-color: black;
+  color: whitesmoke;
+  min-height: 80vh;
+}
+footer {
+  background-color: red;
+  padding: 10px;
+}
+button.register {
+  margin-right: 10px;
+  width: 75px;
 }
