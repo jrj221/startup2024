@@ -12,16 +12,27 @@
     <link rel="icon" href="logo.ico" />
 </head>
 <body>
-    <section>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="index.html"><h3>Senior Assassin</h3></a>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a class="nav-link px-2" href="chat.html">Chat</a></li>
+            <li><a class="nav-link px-2" href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+        <div class="text-end">
+            <form>
+                <input class="form-control-sm" type="text" placeholder="username">
+                <input class="form-control-sm" type="password" placeholder="password">
+                <input class="form-control-sm" type="submit" class="btn btn-dark" value="submit">
+            </form>
+        </div>
+    </nav>
+    <main>
         <h1>Notes</h1>
         <p class="comments">
-            Could be stored in a database since i want it to be 
-            remembered even when the user logins out and visits later
+        Could be stored in a database since i want it to be 
+        remembered even when the user logins out and visits later
         </p>
-    </section>
-    <nav>
-        <a href="index.html">Home</a> | <a href="chat.html">Chat</a> | <a href="leaderboard.html">Leaderboard</a> 
-    </nav>
+    </main>
     
     <footer>Jack Johnson | <a href="https://github.com/jrj221/startup2024">Github Repo</a></footer>
 </body>

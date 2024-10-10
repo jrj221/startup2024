@@ -12,16 +12,28 @@
     <link rel="icon" href="logo.ico" />
 </head>
 <body>
-    <section>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="index.html"><h3>Senior Assassin</h3></a>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a class="nav-link px-2" href="leaderboard.html">Leaderboard</a></li>
+            <li><a class="nav-link px-2" href="notes.html">Notes</a></li>
+        </ul>
+        <div class="text-end">
+            <form>
+                <input class="form-control-sm" type="text" placeholder="username">
+                <input class="form-control-sm" type="password" placeholder="password">
+                <input class="form-control-sm" type="submit" class="btn btn-dark" value="submit">
+            </form>
+        </div>
+    </nav>
+
+    <main>
         <h1>Chats</h1>
         <p class="comments">
             WebSocket data will be here since I want the chats to update 
             in realtime when other users send replies.
         </p>
-    </section>
-    <nav>
-        <a href="index.html">Home</a> | <a href="leaderboard.html">Leaderboard</a> | <a href="notes.html">Notes</a> 
-    </nav>
+    </main>
     
     <footer>Jack Johnson | <a href="https://github.com/jrj221/startup2024">Github Repo</a></footer>
 </body>
