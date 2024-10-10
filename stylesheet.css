@@ -1,26 +1,21 @@
-* {
-    font-family: Arial;
-    border: medium dashed #e3d5c2;
-    padding: 0.25em;
-    margin: 0.25em;
-  }
-
-.comments {
-  color: green;
-  font-weight: bold;
+nav.bg-dark{
+  background-color: red !important;
+} 
+a.navbar-brand {
+  padding: 10px;
 }
-body {
-  display: flex;
+form {
+  padding: 10px;
+}
+h3 {
   margin: 0;
-  height: 100vh;
-  flex-direction: column;
 }
-header {
-  display: flex;
-  flex-direction: row;
-  background-color: red;
+a {
+  color: black !important;
 }
-h1 {
+ul {
   margin: 0;
-  width: auto;
+}
+main {
+  margin-top: 100px;
 }
