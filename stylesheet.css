@@ -88,6 +88,7 @@ div.current_chat {
   margin-left: 30px;
   height: 500px;
   margin-bottom: 30px;
+  overflow: scroll
 }
 div.incoming {
   text-align: left;
@@ -119,7 +120,6 @@ p.outgoing {
 input.message {
   border-radius: 10px;
   float: right;
-  margin: 5px;
 }
 div.chats {
   padding: 10px;
@@ -130,6 +130,9 @@ div.chats {
   height: 500px;
   margin-left: 40px;
   overflow: scroll;
+}
+div.chats_mobile {
+  display: none;
 }
 div.chat_name {
   padding: 5px;
@@ -233,5 +236,23 @@ div.leaderboard_position {
   }
   header.register {
     display: none;
+  }
+  div.leaderboard {
+    width: 80vw;
+  }
+  div.chats {
+    display: none;
+  }
+  div.chats_mobile {
+    display: block;
+    text-align: center;
+  }
+  a.chats_button {
+    width: 90vw;
+    background-color: white;
+  }
+  div.current_chat {
+    width: 90vw;
+    margin-left: 2vw;
   }
 }
