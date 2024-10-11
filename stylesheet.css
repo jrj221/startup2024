@@ -71,3 +71,47 @@ img.target {
   width: 39vw;
   border-radius: 40px;
 }
+div.chats {
+  width: 30vw;
+  background-color: white;
+  display: inline-block;
+}
+div.current_chat {
+  width: 65vw;
+  background-color: white;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 10px;
+}
+div.incoming {
+  text-align: left;
+}
+p.incoming {
+  display: inline-block;
+  background-color: #EAEAEC;
+  padding: 5px;
+  margin: 10px;
+  width: fit-content;
+  color: black;
+  border: solid;
+  border-radius: 10px;
+}
+div.outgoing {
+  text-align: right;
+  padding: 0;
+}
+p.outgoing {
+  display: inline-block;
+  background-color: #1287FF;
+  padding: 5px;
+  margin: 10px;
+  width: fit-content;
+  color: black;
+  border: solid;
+  border-radius: 10px;
+}
+input.message {
+  border-radius: 10px;
+  float: right;
+  margin: 5px;
+}
