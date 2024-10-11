@@ -216,4 +216,22 @@ div.leaderboard_position {
   span.unit {
     font-size: 1em;
   }
+  a.back_home {
+    font-size: 1em;
+    vertical-align: top;
+    margin: auto;
+    font-weight: bold;
+    margin-right: 0;
+  }
+  p.register {
+    font-size: 1em;
+    margin: auto;
+    margin-left: 0;
+  }
+  main.register {
+    min-height: 90vh;
+  }
+  header.register {
+    display: none;
+  }
 }
