@@ -184,6 +184,15 @@ div.leaderboard_position {
   padding: 10px;
   font-size: 20px;
 }
+div.notes {
+  width: 80vw;
+  min-height: 60vh;
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  color: black;
+  padding: 10px;
+}
 @media (max-width: 400px) {
   main {
     margin-top: 0;
