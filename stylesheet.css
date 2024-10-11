@@ -137,3 +137,27 @@ div.chat_name {
   border: 2px solid gray;
   margin: 0;
 }
+header.register {
+  text-align: center;
+  padding: 20px;
+}
+a.back_home {
+  display: inline-block;
+  width: fit-content;
+  font-size: 30px;
+}
+p.register {
+  display: inline-block;
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+}
+form.register {
+  width: fit-content;
+  padding: 10px;
+  margin: auto;
+}
+input.register {
+  margin-top: 10px; 
+  margin-bottom: 10px;
+}
