@@ -4,6 +4,9 @@ body {
 nav.bg-dark{
   background-color: red !important;
 } 
+nav.mobile-view {
+  display: none;
+}
 a.navbar-brand {
   padding: 10px;
 }
@@ -49,10 +52,10 @@ div.countdown {
   display: inline-block;
 }
 span.time {
-  font-size: 130px;
+  font-size: 8em;
 }
 span.unit {
-  font-size: 25px;
+  font-size: 1.5em;
 }
 div.target_photo {
   width: 40vw;
@@ -177,4 +180,40 @@ div.leaderboard_position {
   color: black;
   padding: 10px;
   font-size: 20px;
+}
+@media (max-width: 400px) {
+  main {
+    margin-top: 0;
+    min-height: 85vh;
+  }
+  footer {
+    top: 10vh;
+  }
+  nav.desktop-view {
+    display: none;
+  }
+  nav.mobile-view {
+    display: block;
+  }
+  h3 {
+    display: inline-block;
+  }
+  div.countdown {
+    display: block;
+    width: 80vw;
+    margin: auto;
+  }
+  div.target_photo {
+    width: 80vw;
+    margin-left: 7vw;
+  }
+  img.target {
+    width: 79vw;
+  }
+  span.time {
+    font-size: 2em;
+  }
+  span.unit {
+    font-size: 1em;
+  }
 }

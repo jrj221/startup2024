@@ -34,3 +34,14 @@ For this deliverable I built out the structure of my application using HTML.
 - [x] **Images** - Haven't created a permanent site image, but I used a random AI image to show that I know how to implement an image in HTML.
 - [x] **DB/Login** - Input box and submit button for login. Created a database placeholder in leaderboard.html to show how that might be used eventually.
 - [x] **WebSocket** - Created a placeholder in the chat.html page to show where that technology might be used in the future.
+
+## CSS deliverable
+
+For this deliverable I built the CSS to make my application LOOK pretty much like what it will in its final version.
+
+- [x] **Header, footer, and main content body** - 
+- [x] **Navigation elements** - 
+- [x] **Responsive to window resizing** - 
+- [x] **Application elements** - 
+- [x] **Application text content** - 
+- [x] **Application Images** - 
