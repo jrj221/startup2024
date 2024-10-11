@@ -39,9 +39,9 @@ For this deliverable I built out the structure of my application using HTML.
 
 For this deliverable I built the CSS to make my application LOOK pretty much like what it will in its final version.
 
-- [x] **Header, footer, and main content body** - 
-- [x] **Navigation elements** - 
-- [x] **Responsive to window resizing** - 
-- [x] **Application elements** - 
-- [x] **Application text content** - 
-- [x] **Application Images** - 
+- [x] **Header, footer, and main content body** - Structure and CSS for these elements are present on each page.
+- [x] **Navigation elements** - Every page has a bootstrap navbar which is styled differently depending on what display is used.
+- [x] **Responsive to window resizing** - Application looks good on both desktop and mobile (max-width: 400px) displays
+- [x] **Application elements** - I chose colors, sizing, and positioning that looks good on different displays.
+- [x] **Application text content** - Consistent fonts and styling.
+- [x] **Application Images** - Images aren't really a part of my application but I have one image on the homepage as a placeholder for target image. This image IS styled with CSS.
