@@ -1,6 +1,20 @@
+/* Universal Elements */
 body {
   background-color: red;
 }
+main {
+  margin-top: 100px;
+  padding: 10px;
+  background-color: black;
+  color: whitesmoke;
+  min-height: 80vh;
+}
+footer {
+  background-color: red;
+  padding: 10px;
+}
+
+/* Navbar */
 nav.bg-dark{
   background-color: red !important;
 } 
@@ -12,6 +26,10 @@ a.navbar-brand {
 }
 a.nav-link {
   text-shadow: -1px -1px darkred;
+}
+button.register {
+  margin-right: 10px;
+  width: 75px;
 }
 form {
   padding: 10px;
@@ -27,22 +45,9 @@ a {
 ul {
   margin: 0;
 }
-main {
-  margin-top: 100px;
-  padding: 10px;
-  background-color: black;
-  color: whitesmoke;
-  min-height: 80vh;
-}
-footer {
-  background-color: red;
-  padding: 10px;
-}
-button.register {
-  margin-right: 10px;
-  width: 75px;
-}
-div.countdown {
+
+/* Countdown Elements */
+.countdown {
   width: 50vw;
   background-color: white;
   color: black;
@@ -51,13 +56,15 @@ div.countdown {
   margin: 20px;
   display: inline-block;
 }
-span.time {
+.time {
   font-size: 8em;
 }
-span.unit {
+.unit {
   font-size: 1.5em;
 }
-div.target_photo {
+
+/* Target Elements */
+.target {
   width: 40vw;
   background-color: white;
   color: black;
@@ -68,18 +75,37 @@ div.target_photo {
   vertical-align: top;
   text-align: center;
 }
-img.target {
+.target_photo {
   padding: 15px;
   margin: auto;
   width: 39vw;
   border-radius: 40px;
 }
-div.chats {
-  width: 30vw;
-  background-color: white;
+
+/* Chat Elements */
+.chats {
+  padding: 10px;
   display: inline-block;
+  background-color: white;
+  width: 30vw;
+  border-radius: 10px;
+  height: 500px;
+  margin-left: 40px;
+  overflow: scroll;
 }
-div.current_chat {
+.chats_mobile {
+  display: none;
+}
+.chat_name {
+  padding: 5px;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  height: 60px;
+  border: 2px solid gray;
+  margin: 0;
+}
+.current_chat {
   width: 60vw;
   background-color: white;
   display: inline-block;
@@ -121,28 +147,8 @@ input.message {
   border-radius: 10px;
   float: right;
 }
-div.chats {
-  padding: 10px;
-  display: inline-block;
-  background-color: white;
-  width: 30vw;
-  border-radius: 10px;
-  height: 500px;
-  margin-left: 40px;
-  overflow: scroll;
-}
-div.chats_mobile {
-  display: none;
-}
-div.chat_name {
-  padding: 5px;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  height: 60px;
-  border: 2px solid gray;
-  margin: 0;
-}
+
+/* Registration Elements */ 
 header.register {
   text-align: center;
   padding: 20px;
@@ -167,7 +173,9 @@ input.register {
   margin-top: 10px; 
   margin-bottom: 10px;
 }
-div.leaderboard {
+
+/* Leaderboard Elements */
+.leaderboard {
   margin: auto;
   background-color: white;
   border-radius: 10px;
@@ -176,7 +184,7 @@ div.leaderboard {
   height: 450px;
   overflow: scroll;
 }
-div.leaderboard_position {
+.leaderboard_position {
   border: 1px solid gray;
   border-radius: 10px;
   margin: 10px;
@@ -184,7 +192,9 @@ div.leaderboard_position {
   padding: 10px;
   font-size: 20px;
 }
-div.notes {
+
+/* Notes Elements */
+.notes {
   width: 80vw;
   min-height: 60vh;
   background-color: white;
@@ -193,7 +203,12 @@ div.notes {
   color: black;
   padding: 10px;
 }
+
+/* --------MOBILE VIEW-------- */
+
+
 @media (max-width: 400px) {
+  /* Universal Elements */
   main {
     margin-top: 0;
     min-height: 85vh;
@@ -201,34 +216,42 @@ div.notes {
   footer {
     top: 10vh;
   }
+  h3 {
+    display: inline-block;
+  }
+
+  /* Navbar */
   nav.desktop-view {
     display: none;
   }
   nav.mobile-view {
     display: block;
   }
-  h3 {
-    display: inline-block;
-  }
-  div.countdown {
+
+  /* Countdown */
+  .countdown {
     display: block;
     width: 80vw;
     margin: auto;
   }
-  div.target_photo {
+  .time {
+    font-size: 2em;
+  }
+  .unit {
+    font-size: 1em;
+  }
+
+  /* Target */
+  .target_photo {
     width: 80vw;
     margin-left: 7vw;
   }
-  img.target {
+  .target {
     width: 79vw;
   }
-  span.time {
-    font-size: 2em;
-  }
-  span.unit {
-    font-size: 1em;
-  }
-  a.back_home {
+
+  /* Registration */
+  .back_home {
     font-size: 1em;
     vertical-align: top;
     margin: auto;
@@ -246,21 +269,25 @@ div.notes {
   header.register {
     display: none;
   }
-  div.leaderboard {
+
+  /* Leaderboard */
+  .leaderboard {
     width: 80vw;
   }
-  div.chats {
+
+  /* Chats */
+  .chats {
     display: none;
   }
-  div.chats_mobile {
+  .chats_mobile {
     display: block;
     text-align: center;
   }
-  a.chats_button {
+  .chats_button {
     width: 90vw;
     background-color: white;
   }
-  div.current_chat {
+  .current_chat {
     width: 90vw;
     margin-left: 2vw;
   }
