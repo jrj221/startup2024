@@ -1,7 +1,7 @@
-function Notes() {
+import React from 'react';
+
+export function Notes() {
     return (
         <p>Notes</p>
     );
 }
-
-export default Notes
