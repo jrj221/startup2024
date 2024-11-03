@@ -64,7 +64,19 @@ ul {
 }
 
 /* Target Elements */
+.privacy_button {
+  width: 4vw;
+  height: 4vw;
+  background-color: darkred;
+  border-radius: 50%;
+  position: absolute;
+  left: 1vh;
+  top: 1vh;
+  color: white;
+  font-size: 50%;
+}
 .target {
+  position: relative;
   width: 40vw;
   background-color: white;
   color: black;
@@ -242,9 +254,13 @@ input.register {
   }
 
   /* Target */
+  .privacy_button {
+    width: 12vw;
+    height: 12vw;
+    font-size: 35%;
+  }
   .target_photo {
     width: 80vw;
-    margin-left: 7vw;
   }
   .target {
     width: 79vw;

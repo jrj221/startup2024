@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 
 export function Home() {
+
   return (   
     <main role="main">
         <div className="countdown">
@@ -9,14 +11,15 @@ export function Home() {
         <span className="unit">TO COMPLETE THIS WEEK'S CONTRACT</span>
         </div>
     <div className="target">
+        <button className="privacy_button">PRIVACY</button>
         <img className="target_photo" src="target_placeholder.jpg" />
         <p>TOBIAS RIEPER</p>
     </div>
 
-    <p className="comments">
+    <p className="comments">  
         Does a countdown count as a third party service call?
             Otherwise I'll have a third party call to the weather 
-        so you know if you need a rain jacket to go hunt your target &#129335</p>
+        so you know if you need a rain jacket to go hunt your target &#129335;</p>
     </main>
   );
 }
