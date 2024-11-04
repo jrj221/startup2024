@@ -32,3 +32,5 @@ function assign_targets(players) {
 function get_target(user_name) {
     return pairings.get(user_name);
 }
+
+export { add_player, eliminate_player, assign_targets, get_target };

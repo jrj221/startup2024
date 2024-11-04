@@ -100,6 +100,12 @@ ul {
   border-radius: 40px;
   margin-top: 2vh;
 }
+.elimination_button {
+  margin-left: 1vw;
+  border-radius: 5px;
+  border: 2px solid gray;
+  background-color: red;
+}
 
 /* Chat Elements */
 .chats {
