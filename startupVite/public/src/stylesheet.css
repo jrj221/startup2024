@@ -74,6 +74,11 @@ ul {
   top: 1vh;
   color: white;
   font-size: 50%;
+  z-index: 2;
+}
+.privacy_logo {
+  width: 3vw;
+  height: 3vw;
 }
 .target {
   position: relative;
@@ -88,10 +93,12 @@ ul {
   text-align: center;
 }
 .target_photo {
+  z-index: 1;
   padding: 15px;
   margin: auto;
   width: 39vw;
   border-radius: 40px;
+  margin-top: 2vh;
 }
 
 /* Chat Elements */
@@ -258,6 +265,10 @@ input.register {
     width: 12vw;
     height: 12vw;
     font-size: 35%;
+  }
+  .privacy_logo {
+    width: 8vw;
+    height: 8vw;
   }
   .target_photo {
     width: 80vw;

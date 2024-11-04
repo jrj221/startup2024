@@ -2,6 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 
 export function Home() {
+  const [privacy, setPrivacy] = useState("public")
+
+  function handleClick() {
+    setPrivacy((privacy) => privacy === "private" ? "public" : "private");
+  }
 
   return (   
     <main role="main">
@@ -11,9 +16,13 @@ export function Home() {
         <span className="unit">TO COMPLETE THIS WEEK'S CONTRACT</span>
         </div>
     <div className="target">
-        <button className="privacy_button">PRIVACY</button>
-        <img className="target_photo" src="target_placeholder.jpg" />
-        <p>TOBIAS RIEPER</p>
+        <button className="privacy_button" onClick={handleClick}><img className="privacy_logo" src="https://shorturl.at/o7x5o" /></button>
+        <img className="target_photo" 
+        src="https://shorturl.at/aRkQD" 
+        style={{ filter: privacy === "private" ? 'blur(50px)' : 'none' }}
+        />
+        <p style={{ display: privacy === "private" ? 'block' : 'none' }}><b>[REDACTED]</b></p>
+        <p style={{ display: privacy === "public" ? 'block' : 'none' }}>MR BEAST</p>
     </div>
 
     <p className="comments">  
