@@ -51,10 +51,10 @@ For this deliverable I built the CSS to make my application LOOK pretty much lik
 I used JavaScript and React to bundle the whole website onto one html page. Functionality added where possible. 
 
 - [x] **Bundled and transpiled** - done!
-- [x] **Components** - Home, login/registration, leaderboard, chat, and notes are all components with mocks for login and places for WebSocket.
+- [x] **Components** - Home, login/registration, leaderboard, chat, and notes are all components with mocks for login and target elimination, and places for WebSocket to be used in the future.
   - [x] **login** - For aesthetic purposes, my page displays info as if user is already logged in. After we learn login, this will change so that the home page is blank until they log in. If I need to do so to align with the rubric, I can have the login be the first thing you see (like with simon) instead of how I have it in the navbar right now.
-  - [x] **database** - Displayed the voting counts. Currently this is stored and retrieved from local storage, but it will be replaced with the database data later.
+  - [x] **database** - I have mock code to display the leaderboard, targets, notes, and chat messages. Later, a database will persistently store this for multiple users across multiple sessions.
   - [x] **WebSocket** - Hardcoded elements display examples of the leaderboard, current targets, and chat messages. In the future this will be stored with WebSocket instead.
   - [x] **application logic** - Page components "speak" to one another through Router logic.
 - [x] **Router** - Routing between all page components is completed.
-- [x] **Hooks** - I used a useState hook to control privacy filters on the target photo/name.
+- [x] **Hooks** - I used a useState hook to control privacy filters on the target photo/name, as well as to open and close a popup window.
