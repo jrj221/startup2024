@@ -37,6 +37,7 @@ export default function App() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            {/* DROPDOWN ISN'T WORKING FOR MOBILE VIEW */}
             <ul className="navbar-nav">
               <li className="nav-item dropdown">
                 <button className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
