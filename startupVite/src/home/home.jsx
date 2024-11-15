@@ -12,6 +12,17 @@ export function Home() {
     setPrivacy((privacy) => privacy === "private" ? "public" : "private");
   }
 
+  const [temperature, updateTemp] = useState(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch('/api/getWeather')
+        .then(response => response.text()) // makes response readable as a string I guess
+        .then(temperature => updateTemp(temperature))
+    }, 6000)
+
+    return () => clearInterval(interval); // de-allocates memory for the timer once the page component changes (no memory leaks)
+  }, []); // empty dependency array makes it so it won't execute for each render (which would be redundant considering we have an interval)
+
   return (   
     <main role="main">
       <div className="countdown">
