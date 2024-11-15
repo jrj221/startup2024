@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Home() {
   const [popupOpen, setIsOpen] = useState(false);
@@ -12,23 +12,33 @@ export function Home() {
     setPrivacy((privacy) => privacy === "private" ? "public" : "private");
   }
 
-  const [temperature, updateTemp] = useState(null);
+  const [temperature, updateTemp] = useState('TEMP');
   useEffect(() => {
     const interval = setInterval(() => {
       fetch('/api/getWeather')
         .then(response => response.text()) // makes response readable as a string I guess
         .then(temperature => updateTemp(temperature))
-    }, 6000)
+    }, 60000) //updates every hour
 
     return () => clearInterval(interval); // de-allocates memory for the timer once the page component changes (no memory leaks)
   }, []); // empty dependency array makes it so it won't execute for each render (which would be redundant considering we have an interval)
 
   return (   
     <main role="main">
-      <div className="countdown">
-      <span className="unit">YOU HAVE</span><br />
-      <span className="time">5 </span><span className="unit">days </span><span className="time">14 </span><span className="unit">hours </span><span className="time">48 </span><span className="unit">seconds</span><br />
-      <span className="unit">TO COMPLETE THIS WEEK'S CONTRACT</span>
+      <div className="mobile_countdown">
+          <span className="unit">YOU HAVE</span><br />
+          <span className="time">5 </span><span className="unit">days </span><span className="time">14 </span><span className="unit">hours </span><span className="time">48 </span><span className="unit">seconds</span><br />
+          <span className="unit">TO COMPLETE THIS WEEK'S CONTRACT</span>
+        </div>
+      <div className="countdown_and_weather">
+        <div className="countdown">
+          <span className="unit">YOU HAVE</span><br />
+          <span className="time">5 </span><span className="unit">days </span><span className="time">14 </span><span className="unit">hours </span><span className="time">48 </span><span className="unit">seconds</span><br />
+          <span className="unit">TO COMPLETE THIS WEEK'S CONTRACT</span>
+        </div>
+        <div className="forecast">
+          <p>Thinking about going after your target tonight? It's currently {temperature}&deg;F out.</p>
+        </div>
       </div>
     <div className="target">
       <button className="privacy_button" onClick={handleClick}><img className="privacy_logo" src="https://shorturl.at/o7x5o" /></button>

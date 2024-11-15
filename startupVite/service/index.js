@@ -24,12 +24,23 @@ apiRouter.get('/getWeather', (_req, res) => {
             accept: 'application/json',
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        const temperature = data.timelines.hourly[0].values.temperatureApparent;
-        res.send(temperature.toString())}
+    .then(response => {
+        if (response.status === 429) {
+            // Handle rate limit scenario
+            const dummyTemperature = 'tooMany';
+            return res.send(dummyTemperature.toString());
+        }
+        return response.json()}
     )
-    // .catch to handle errors?
+    .then(data => {
+        let temperature = data.timelines.hourly[0].values.temperatureApparent;
+        let roundedTemperature = Math.round(temperature); // Round the number
+        res.send(roundedTemperature.toString())}
+    )
+    .catch(error => {
+        console.error('Fetch error:', error);
+        res.status(500).send('Internal Server Error');
+    });
 });
 
 app.listen(port, () => {
