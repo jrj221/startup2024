@@ -15,7 +15,7 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // ENDPOINTS GO HERE
-function getWeather() {
+apiRouter.get('/getWeather', (_req, res) => {
     const location = "provo";
     const api_key = "kM8YGj9oKccQcmyNJvd7zDQUsbhxlXka";
     const url = `https://api.tomorrow.io/v4/weather/forecast?location=${location}&apikey=${api_key}&units=imperial`;
@@ -25,11 +25,12 @@ function getWeather() {
         }
     })
     .then(response => response.json())
-    .then(data => console.log(data.timelines.hourly[0].values.temperatureApparent))
-}
-
-getWeather();
-module.exports = getWeather;
+    .then(data => {
+        const temperature = data.timelines.hourly[0].values.temperatureApparent;
+        res.send(temperature.toString())}
+    )
+    // .catch to handle errors?
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
