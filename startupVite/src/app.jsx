@@ -8,10 +8,17 @@ import { Leaderboard } from './leaderboard/leaderboard';
 import { Login } from './login/login';
 import { Notes } from './notes/notes';
 import { Register } from './register/register';
+import { AuthState } from './login/authState';
 
 import './stylesheet.css';
 
 export default function App() {
+  // if userName is in localStorage, its associated value is set to userName. Otherwise, it's initialized to an empty string.
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  // currentAuthState is assigned Authenticated or Unauthenticated based on if userName is truthy or falsy (has a value or not)
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
   return (   
     <BrowserRouter>
       <nav className="desktop-view navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -60,7 +67,15 @@ export default function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/notes" element={<Notes />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login 
+          userName={userName}
+          authState={authState}
+          onAuthChange={(userName, authState) => {
+            setAuthState(authState);
+            setUserName(userName);
+          }}
+          // onAuthChange is a function passed in to Login that it uses to change AuthState upon logout. It takes an arrow function as a parameter
+          />} />
         <Route path="/register" element={<Register />} />
       </Routes>
 
