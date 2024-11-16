@@ -30,35 +30,6 @@ apiRouter.post('/updateLeaderboard', (req, res) => {
     res.send(leaderboard);
 });
 
-// change this to go in frontend
-apiRouter.get('/getWeather', (_req, res) => {
-    const location = "provo";
-    const api_key = "kM8YGj9oKccQcmyNJvd7zDQUsbhxlXka";
-    const url = `https://api.tomorrow.io/v4/weather/forecast?location=${location}&apikey=${api_key}&units=imperial`;
-    fetch(url, {
-        headers: {
-            accept: 'application/json',
-        }
-    })
-    .then(response => {
-        if (response.status === 429) {
-            // Handle rate limit scenario
-            const dummyTemperature = 'tooMany';
-            return res.send(dummyTemperature.toString());
-        }
-        return response.json()}
-    )
-    .then(data => {
-        let temperature = data.timelines.hourly[0].values.temperatureApparent;
-        let roundedTemperature = Math.round(temperature); // Round the number
-        res.send(roundedTemperature.toString())}
-    )
-    .catch(error => {
-        console.error('Fetch error:', error);
-        res.status(500).send('Internal Server Error');
-    });
-});
-
 // helps create a new user
 apiRouter.post('/auth/create', async (req, res) => {
     const user = users[req.body.email]; // either returns the value of the user key in the users object, or null, if its not in the object

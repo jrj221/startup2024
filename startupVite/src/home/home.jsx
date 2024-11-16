@@ -15,9 +15,28 @@ export function Home({ userName }) {
   const [temperature, updateTemp] = useState('TEMP');
   useEffect(() => {
     const interval = setInterval(() => {
-      fetch('/api/getWeather')
-        .then(response => response.text()) // makes response readable as a string I guess
-        .then(temperature => updateTemp(temperature))
+      const location = "provo";
+      const api_key = "kM8YGj9oKccQcmyNJvd7zDQUsbhxlXka";
+      const url = `https://api.tomorrow.io/v4/weather/forecast?location=${location}&apikey=${api_key}&units=imperial`;
+      fetch(url, {headers: {accept: 'application/json'}})
+      .then(response => {
+          if (response.status === 429) {
+              // Handle rate limit scenario
+              const dummyTemperature = 'tooMany';
+              return res.send(dummyTemperature.toString());
+          }
+          return response.json()}
+      )
+      .then(data => {
+          let temperature = data.timelines.hourly[0].values.temperatureApparent;
+          let roundedTemperature = Math.round(temperature); // Round the number
+          return roundedTemperature
+      })
+      .then(temperature => updateTemp(temperature))
+      .catch(error => {
+          console.error('Fetch error:', error);
+          res.status(500).send('Internal Server Error');
+      });
     }, 60000) //updates every hour
 
     return () => clearInterval(interval); // de-allocates memory for the timer once the page component changes (no memory leaks)
