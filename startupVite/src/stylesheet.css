@@ -18,9 +18,6 @@ footer {
 nav.bg-dark{
   background-color: red !important;
 } 
-nav.mobile-view {
-  display: none;
-}
 a.navbar-brand {
   padding: 10px;
 }
@@ -255,8 +252,7 @@ th, td {
 @media (max-width: 400px) {
   /* Universal Elements */
   main {
-    margin-top: 0;
-    min-height: 85vh;
+    margin-top: 40vw;
   }
   footer {
     top: 10vh;
@@ -264,15 +260,7 @@ th, td {
   h3 {
     display: inline-block;
   }
-
-  /* Navbar */
-  nav.desktop-view {
-    display: none;
-  }
-  nav.mobile-view {
-    display: block;
-  }
-
+  
   /* Countdown */
   .countdown_and_weather {
     display: none;
@@ -309,26 +297,6 @@ th, td {
   .target {
     width: 79vw;
     margin-left: 8vw;
-  }
-
-  /* Registration */
-  .back_home {
-    font-size: 1em;
-    vertical-align: top;
-    margin: auto;
-    font-weight: bold;
-    margin-right: 0;
-  }
-  p.register {
-    font-size: 1em;
-    margin: auto;
-    margin-left: 0;
-  }
-  main.register {
-    min-height: 90vh;
-  }
-  header.register {
-    display: none;
   }
 
   /* Leaderboard */
