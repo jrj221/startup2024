@@ -58,3 +58,13 @@ I used JavaScript and React to bundle the whole website onto one html page. Func
   - [x] **application logic** - Page components "speak" to one another through Router logic.
 - [x] **Router** - Routing between all page components is completed.
 - [x] **Hooks** - I used a useState hook to control privacy filters on the target photo/name, as well as to open and close a popup window.
+
+## Service deliverable
+
+For this deliverable I added backend endpoints and frontend requests to dynamically update my application with information from APIs.
+
+- [x] **Node.js/Express HTTP service** - done!
+- [x] **Static middleware for frontend** - done!
+- [x] **Calls to third party endpoints** - Home has a fetch call to a 3rd party API that provides weather information, in order to display the current temperature. It updates every hour. (Note: it takes like 30 seconds, so give TEMP a minute to render)
+- [x] **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints provided for updating and rendering the leaderboard.
+- [x] **Frontend calls service endpoints** - I used onClick handlers in Home upon clicking "Eliminate Target" to call backend service endpoints that update the leaderboard. The leaderboard is also tracked as a state variable in Leaderboard and is continuously rendered with a useEffect hook every time someone updates the leaderboard. 
