@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const uuid = require('uuid');
 
-users = {} // empty storage for users
+let users = {} // empty storage for users
+let leaderboard = [] // empty storage for leaderboard ()
 
 // just copied simon except startup runs on port 4000
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -17,7 +18,19 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// ENDPOINTS GO HERE
+//sends leaderboard without updating (render useEffect in leaderboard page)
+apiRouter.get('/leaderboard', (_req, res) => {
+    res.send(leaderboard);
+ });
+
+// updates leaderboard every time someone eliminates target. Eventually should remove that person from the player list
+apiRouter.post('/updateLeaderboard', (req, res) => {
+    let newPosition = req.body;
+    leaderboard.push(newPosition);
+    res.send(leaderboard);
+});
+
+// change this to go in frontend
 apiRouter.get('/getWeather', (_req, res) => {
     const location = "provo";
     const api_key = "kM8YGj9oKccQcmyNJvd7zDQUsbhxlXka";

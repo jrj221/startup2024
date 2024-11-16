@@ -63,18 +63,18 @@ export default function App() {
       </nav>
       
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/index" element={<Home userName={userName} />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/notes" element={<Notes />} />
-        <Route path="/login" element={<Login 
+        <Route path="/" element={<Login 
           userName={userName}
           authState={authState}
           onAuthChange={(userName, authState) => {
             setAuthState(authState);
             setUserName(userName);
           }}
-          // onAuthChange is a function passed in to Login that it uses to change AuthState upon logout. It takes an arrow function as a parameter
+          // onAuthChange is a function passed in to Login that it uses to change AuthState upon logout. It takes an arrow function as a
           />} />
         <Route path="/register" element={<Register />} />
       </Routes>

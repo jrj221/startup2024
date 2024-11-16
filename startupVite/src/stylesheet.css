@@ -118,6 +118,19 @@ ul {
   border: 2px solid gray;
   background-color: red;
 }
+/* Login Elements */
+.welcome {
+  text-align: center;
+  margin-top: 5vh;
+  letter-spacing: 0.5vw;
+}
+.login_button {
+  margin: 1vw;
+}
+.login_buttons {
+  text-align: center;
+}
+
 
 /* Chat Elements */
 .chats {
@@ -217,17 +230,12 @@ input.register {
   background-color: white;
   border-radius: 10px;
   padding: 10px;
-  width: 50vw;
-  height: 450px;
+  width: 70vw;
+  height: auto;
   overflow: scroll;
 }
-.leaderboard_position {
-  border: 1px solid gray;
-  border-radius: 10px;
-  margin: 10px;
-  color: black;
-  padding: 10px;
-  font-size: 20px;
+th, td {
+  width: auto;
 }
 
 /* Notes Elements */
@@ -326,6 +334,9 @@ input.register {
   /* Leaderboard */
   .leaderboard {
     width: 80vw;
+  }
+  .podium {
+    background-color: goldenrod !important;
   }
 
   /* Chats */

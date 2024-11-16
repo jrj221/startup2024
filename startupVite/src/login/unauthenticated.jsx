@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageDialog } from './messageDialog';
+import Button from 'react-bootstrap/Button';
 
 export function Unauthenticated(props) {
     const [userName, setUserName] = React.useState(props.userName);
@@ -10,7 +11,7 @@ export function Unauthenticated(props) {
         loginOrCreate(`/api/auth/login`);
       }
     
-      async function createUser() { // PAGE CURRENTLY ONLY SUPPORTS LOGIN, NOT CREATE
+      async function createUser() { 
         loginOrCreate(`/api/auth/create`);
       }
 
@@ -27,7 +28,7 @@ export function Unauthenticated(props) {
           props.onLogin(userName); // executes the onAuthChange arrow function we passed in in login.jsx. This updates the userName and authState states (to authenticated)
         } else {
           const body = await response.json();
-          setDisplayError(`⚠ Error: ${body.msg}`); // sends the "Unauthorized" msg seen in index.js if the response isn't sucessful 
+          setDisplayError(`⚠ Error: ${body.msg}`); // sends the "Unauthorized" msg seen in index.js if the response isn't successful 
         }
       }
     
@@ -48,9 +49,14 @@ export function Unauthenticated(props) {
                     onChange={(e) => setPassword(e.target.value)} id="password" 
                 />
             </div>
-            <button type="submit" className="btn btn-primary" onClick={() => loginUser()} disabled={!userName || !password}>
+            <div className="login_buttons">
+              <Button variant='primary' className="login_button" onClick={() => loginUser()} disabled={!userName || !password}>
                 Login
-            </button>
+              </Button>
+              <Button variant='secondary' className="login_button" onClick={() => createUser()} disabled={!userName || !password}>
+                Create
+              </Button>
+            </div>
             <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
         </form>
     )

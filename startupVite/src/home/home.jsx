@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-export function Home() {
+export function Home({ userName }) {
   const [popupOpen, setIsOpen] = useState(false);
   const showPopup = () => setIsOpen(true);
   const hidePopup = () => setIsOpen(false);
@@ -23,6 +23,18 @@ export function Home() {
     return () => clearInterval(interval); // de-allocates memory for the timer once the page component changes (no memory leaks)
   }, []); // empty dependency array makes it so it won't execute for each render (which would be redundant considering we have an interval)
 
+async function saveLeaderboardPosition() {
+  const date = new Date().toLocaleString();
+  const newPerson = {name: userName, date: date };
+
+  await fetch('/api/updateLeaderboard', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(newPerson),
+  });
+}
+
+  
   return (   
     <main role="main">
       <div className="mobile_countdown">
@@ -63,7 +75,7 @@ export function Home() {
           <h4>This action cannot be undone</h4>
           <div>
             <button onClick={hidePopup}>Go back</button>
-            <button className="elimination_button" onClick={hidePopup}>ELIMINATE</button>
+            <button className="elimination_button" onClick={() => { hidePopup(); saveLeaderboardPosition()} }>ELIMINATE</button>
           </div>
         </div>)}
     </div>

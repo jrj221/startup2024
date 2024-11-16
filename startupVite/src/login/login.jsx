@@ -7,20 +7,25 @@ export function Login({ userName, authState, onAuthChange }) {
     // {} passed in when Login component was rendered in Router
     return (
         <main className="register">
-            {authState !== AuthState.Unknown && <h1>Welcome to the Login Page!</h1>} {/* Displays if authState is unknown (hasn't logged in) */}
             {authState === AuthState.Authenticated && (
-                <Authenticated 
-                    userName={userName} 
-                    onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} 
-                />
+                <>
+                    <h1 className="welcome">Welcome, Agent {userName}</h1>
+                    <Authenticated 
+                        userName={userName} 
+                        onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} 
+                    />
+                </>
             )} {/* Renders Authenticated component if authState is authenticated. Authenticated takes the props userName, and function onLogout */}
             {authState === AuthState.Unauthenticated && (
-                <Unauthenticated
-                    userName={userName}
-                    onLogin={(loginUserName) => {
-                    onAuthChange(loginUserName, AuthState.Authenticated);
-                    }}
-                />
+                <>
+                    <h1 className="welcome">Welcome, Agent</h1>
+                    <Unauthenticated
+                        userName={userName}
+                        onLogin={(loginUserName) => {
+                        onAuthChange(loginUserName, AuthState.Authenticated);
+                        }}
+                    />
+                </>
             )} {/* Renders Unauthenticated if authState is unauthenticated */}
         </main>
     );

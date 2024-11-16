@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 export function Authenticated(props) {
     const navigate = useNavigate();
@@ -19,13 +20,14 @@ export function Authenticated(props) {
     
     return (
         <div>
-          <div>{props.userName}</div>
-          <Button variant='primary' onClick={() => navigate('/home')}>
-            Go to Home
-          </Button>
-          <Button variant='secondary' onClick={() => logout()}>
-            Logout
-          </Button>
+          <div className="login_buttons">
+            <Button variant='primary' className="login_button" onClick={() => navigate('/index')}>
+              Go to Home
+            </Button>
+            <Button variant='secondary' className="login_button" onClick={() => logout()}>
+              Logout
+            </Button>
+          </div>
         </div>
     );
 }
