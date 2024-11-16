@@ -335,9 +335,6 @@ th, td {
   .leaderboard {
     width: 80vw;
   }
-  .podium {
-    background-color: goldenrod !important;
-  }
 
   /* Chats */
   .chats {

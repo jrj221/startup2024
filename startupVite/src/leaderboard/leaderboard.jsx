@@ -18,12 +18,25 @@ export function Leaderboard() {
       const leaderboard_rows = [];
       if (leaderboard.length) { // triggers if the leaderboard isn't empty
         for (const [position, person] of leaderboard.entries()) {
-          leaderboard_rows.push(
-            <tr className='podium' key={position}>
-              <td>{position + 1}</td>
-              <td>{person.name.split('@')[0]}</td>
-              <td>{person.date}</td>
-            </tr>
+            let podium;
+            if (position == 0) {
+                podium = 'goldenrod';
+            }
+            else if (position == 1) {
+                podium = 'silver';
+            }
+            else if (position == 2) {
+                podium = '#CD7F32';
+            }
+            else {
+                podium = 'white';
+            }
+            leaderboard_rows.push(
+                <tr key={position}>
+                <td style={{ backgroundColor: podium }}>{position + 1}</td>
+                <td style={{ backgroundColor: podium }}>{person.name.split('@')[0]}</td>
+                <td style={{ backgroundColor: podium }}>{person.date}</td>
+                </tr>
           );
         }
       } else { // leaderboard is empty
