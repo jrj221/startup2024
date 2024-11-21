@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-function LeaderboardMember({position, name, eliminationTime}) {
-    {/* eliminationTime represents Day at Time, like "Monday at 12:24pm" */}
-    return <div className="leaderboard_position">{position}. {name} | Eliminated target on {eliminationTime}</div>;
-}
+// function LeaderboardMember({position, name, eliminationTime}) {
+//     {/* eliminationTime represents Day at Time, like "Monday at 12:24pm" */}
+//     return <div className="leaderboard_position">{position}. {name} | Eliminated target on {eliminationTime}</div>;
+// } don't think this is being used anymore
 
 export function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState([])
@@ -35,7 +35,7 @@ export function Leaderboard() {
                 <tr key={position}>
                 <td style={{ backgroundColor: podium }}>{position + 1}</td>
                 <td style={{ backgroundColor: podium }}>{person.name.split('@')[0]}</td>
-                <td style={{ backgroundColor: podium }}>{person.date}</td>
+                <td style={{ backgroundColor: podium }}>{person.date.toLocaleDateString()}</td>
                 </tr>
           );
         }

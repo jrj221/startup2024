@@ -43,8 +43,8 @@ export function Home({ userName }) {
   }, []); // empty dependency array makes it so it won't execute for each render (which would be redundant considering we have an interval)
 
 async function saveLeaderboardPosition() {
-  const date = new Date().toLocaleString();
-  const newPerson = {name: userName, date: date };
+  const date = new Date();
+  const newPerson = {userName: userName, date: date };
 
   await fetch('/api/updateLeaderboard', {
     method: 'POST',

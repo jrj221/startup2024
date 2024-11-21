@@ -4,9 +4,10 @@ const bcrypt = require('bcrypt');
 const config = require('../dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-const client = new MongoClient(url);
+const client = new MongoClient(url, { tls: true, serverSelectionTimeoutMS: 3000, autoSelectFamily: false, });
 const db = client.db('startup');
 const userCollection = db.collection('user');
+const leaderboardCollection = db.collection('leaderboard');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -34,7 +35,26 @@ async function createUser(email, password) {
     return user;
 }
 
+async function updateLeaderboard(userName, date) {
+    const leaderboardPerson = {
+        userName: userName,
+        date: date,
+    };
+    await leaderboardCollection.insertOne(leaderboardPerson);
+}
+
+async function getLeaderboard() {
+    const query = {};
+    const options = {
+      sort: { date: 1 },
+    };
+    const cursor = leaderboardCollection.find(query, options);
+    return await cursor.toArray();
+}
+
 module.exports = {
     getUser,
     createUser,
+    updateLeaderboard,
+    getLeaderboard,
 }

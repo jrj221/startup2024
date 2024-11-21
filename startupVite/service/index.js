@@ -70,15 +70,15 @@ secureApiRouter.use(async (req, res, next) => { // some endpoints can now only b
 });
 
 //sends leaderboard without updating (render useEffect in leaderboard page)
-secureApiRouter.get('/leaderboard', (_req, res) => {
+secureApiRouter.get('/leaderboard', async (_req, res) => {
+  const leaderboard = await DB.getLeaderboard();
   res.send(leaderboard);
+  // duck recommended having a catch block here *shrug*
 });
 
 // updates leaderboard every time someone eliminates target. Eventually should remove that person from the player list
 secureApiRouter.post('/updateLeaderboard', (req, res) => {
-  let newPosition = req.body;
-  leaderboard.push(newPosition);
-  res.send(leaderboard);
+  DB.updateLeaderboard(req.body.userName, req.body.date); //database.js function to add to database
 });
 
 function setAuthCookie(res, authToken) { // middleware?? to make the cookie secure to access.
