@@ -30,18 +30,29 @@ apiRouter.post('/updateLeaderboard', (req, res) => {
     res.send(leaderboard);
 });
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 // helps create a new user
 apiRouter.post('/auth/create', async (req, res) => {
-    const user = users[req.body.email]; // either returns the value of the user key in the users object, or null, if its not in the object
-    if (user) { // executes if it is already in the object
+    if (await DB.getUser(req.body.email)) { // executes if it is already in the object
       res.status(409).send({ msg: 'Existing user' }); 
-    } else { // executes if user is not in the object (user doesn't exist yet)
-      const user = { email: req.body.email, password: req.body.password, token: uuid.v4() };
-      users[user.email] = user;
+    } 
+    else { // executes if user is not in the object (user doesn't exist yet)
+      const user = await DB.createUse(req.body.email, req.body.password);
+      setAuthCookie(res, user.token); // ?? creates cookie to store user info
   
-      res.send({ token: user.token });
+      res.send({ id: user._id}); // ID associated with the database entry
     }
 });
+
+function setAuthCookie(res, authToken) { // middleware?? to make the cookie secure to access.
+  res.cookie('token', authToken, {
+    secure: true, // only HTTPS
+    httpOnly: true, // browser javascript can't read the cookie
+    sameSite: 'strict', // only the domain that generates the cookie can view it
+  });
+}
 
 // helps login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
