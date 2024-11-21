@@ -1,22 +1,28 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
-const uuid = require('uuid');
+const DB = require('./database.js')
 
-let users = {} // empty storage for users
-let leaderboard = [] // empty storage for leaderboard ()
 
-// just copied simon except startup runs on port 4000
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const port = process.argv.length > 2 ? process.argv[2] : 8080;
 
 // converts JSON objects into JS objects, stored in req.body
 app.use(express.json());
 
+// keeps track of authentication tokens
+app.use(cookieParser());
+
 // serves up resources (images, etc) from 'public' to be accessed as "http//domain/img.png" instead of "public/img.png"
 app.use(express.static('public'));
+
+// Trust headers that are forwarded from the proxy so we can determine IP addresses
+app.set('trust proxy', true);
 
 // Router for service endpoints. A route will be executed with "/api/routeName"
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
 
 //sends leaderboard without updating (render useEffect in leaderboard page)
 apiRouter.get('/leaderboard', (_req, res) => {
@@ -30,16 +36,13 @@ apiRouter.post('/updateLeaderboard', (req, res) => {
     res.send(leaderboard);
 });
 
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
-
 // helps create a new user
 apiRouter.post('/auth/create', async (req, res) => {
     if (await DB.getUser(req.body.email)) { // executes if it is already in the object
       res.status(409).send({ msg: 'Existing user' }); 
     } 
     else { // executes if user is not in the object (user doesn't exist yet)
-      const user = await DB.createUse(req.body.email, req.body.password);
+      const user = await DB.createUser(req.body.email, req.body.password);
       setAuthCookie(res, user.token); // ?? creates cookie to store user info
   
       res.send({ id: user._id}); // ID associated with the database entry
@@ -56,15 +59,25 @@ function setAuthCookie(res, authToken) { // middleware?? to make the cookie secu
 
 // helps login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = users[req.body.email];
+    const user = await getUser(req.body.email); // why don't we need DB. here like we do in /create ?
     if (user) {
-      if (req.body.password === user.password) { //if password is correct, assign and send a authentication token
-        user.token = uuid.v4();
-        res.send({ token: user.token });
+      if (await bcrypt.compare(req.body.password, user.password)) { //if password is correct
+        setAuthCookie(res, user.token);
+        res.send({ id: user._id });
         return;
       }
     }
     res.status(401).send({ msg: 'Unauthorized' }); // triggers if you don't have an account or enter wrong password
+});
+
+app.get('/user/me', async (req, res) => {
+  authToken = req.cookies['token'];
+  const user = await collection.findOne({token: authToken});
+  if (user) {
+    res.send({email: user.email});
+    return;
+  }
+  res.status(401).send({msg: 'Unauthorized'});
 });
 
 // helps logout a currently logged in user
