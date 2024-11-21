@@ -68,3 +68,14 @@ For this deliverable I added backend endpoints and frontend requests to dynamica
 - [x] **Calls to third party endpoints** - Home has a fetch call to a 3rd party API that provides weather information, in order to display the current temperature. It updates every hour. (Note: it takes like 30 seconds, so give TEMP a minute to render)
 - [x] **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints provided for updating and rendering the leaderboard.
 - [x] **Frontend calls service endpoints** - I used onClick handlers in Home upon clicking "Eliminate Target" to call backend service endpoints that update the leaderboard. The leaderboard is also tracked as a state variable in Leaderboard and is continuously rendered with a useEffect hook every time someone updates the leaderboard. 
+
+## DB/Login deliverable
+
+For this deliverable I made account creation and login functional and stored user info persistently in MongoDB. I also made functions to store and retrieve leaderboard information from the database.
+
+- [x] **MongoDB Atlas database created** - done!
+- [x] **Stores data in MongoDB** - done!
+- [x] **User registration** - Creates a new account in the database.
+- [x] **existing user** - Allows existing users to log in and out. 
+- [x] **Use MongoDB to store credentials** - Stores user information such as email, password, and authentication token.
+- [x] **Restricts functionality** - Created a secureApiRouter that only allows logged in users to update the leaderboard. Furthermore, users must be authenticated before the home page will even render.
