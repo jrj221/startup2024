@@ -2,7 +2,7 @@ any notes in here can be used on the midterm and final
 
 Secure Shell (SSH) connections allow you to remotely connect to a network securely.
 to ssh into your production environment server use this console command:<br>
-ssh -i documents/cs260/supersecret.pem ubuntu@seniorassassingame.click
+ssh -i Documents/cs260/supersecret.pem ubuntu@seniorassassingame.click
 
 Public IP address --> 54.89.219.9 <br>
 The DNS (Domain Name System) stores an A record (Address Record) which maps a domain name (seniorassassingame.click) to an IP address (54.89.219.9)
@@ -13,7 +13,7 @@ Ports are numerical identifiers that route web traffic to different processes or
     SSH connections usually use Port 22
 
 DEPLOY FILES
-./deployFiles.sh -k ~/Documents/cs260/supersecret.pem -h seniorassassingame.click -s startup
+
 
 Caddy is a web service that receives an HTTP request and routes it to other stuff. Not really sure how it all works. 
 
