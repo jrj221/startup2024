@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js')
+const authCookieName = 'token';
 
 
 const port = process.argv.length > 2 ? process.argv[2] : 8080;
@@ -23,19 +24,6 @@ app.set('trust proxy', true);
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-
-//sends leaderboard without updating (render useEffect in leaderboard page)
-apiRouter.get('/leaderboard', (_req, res) => {
-    res.send(leaderboard);
- });
-
-// updates leaderboard every time someone eliminates target. Eventually should remove that person from the player list
-apiRouter.post('/updateLeaderboard', (req, res) => {
-    let newPosition = req.body;
-    leaderboard.push(newPosition);
-    res.send(leaderboard);
-});
-
 // helps create a new user
 apiRouter.post('/auth/create', async (req, res) => {
     if (await DB.getUser(req.body.email)) { // executes if it is already in the object
@@ -48,14 +36,6 @@ apiRouter.post('/auth/create', async (req, res) => {
       res.send({ id: user._id}); // ID associated with the database entry
     }
 });
-
-function setAuthCookie(res, authToken) { // middleware?? to make the cookie secure to access.
-  res.cookie('token', authToken, {
-    secure: true, // only HTTPS
-    httpOnly: true, // browser javascript can't read the cookie
-    sameSite: 'strict', // only the domain that generates the cookie can view it
-  });
-}
 
 // helps login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
@@ -70,24 +50,44 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.status(401).send({ msg: 'Unauthorized' }); // triggers if you don't have an account or enter wrong password
 });
 
-app.get('/user/me', async (req, res) => {
-  authToken = req.cookies['token'];
-  const user = await collection.findOne({token: authToken});
-  if (user) {
-    res.send({email: user.email});
-    return;
-  }
-  res.status(401).send({msg: 'Unauthorized'});
+// helps logout a currently logged in user by clearing their authentication cookie
+apiRouter.delete('/auth/logout', (_req, res) => {
+  res.clearCookie(authCookieName);
+  res.status(204).end();
 });
 
-// helps logout a currently logged in user
-apiRouter.delete('/auth/logout', (req, res) => {
-    const user = Object.values(users).find((u) => u.token === req.body.token); // iterates over users to find user based on their token
-    if (user) {
-      delete user.token;
-    }
-    res.status(204).end();
+const secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => { // some endpoints can now only be accessed if you are logged in
+  const authToken = req.cookies[authCookieName];
+  const user = await DB.getUserByToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
 });
+
+//sends leaderboard without updating (render useEffect in leaderboard page)
+secureApiRouter.get('/leaderboard', (_req, res) => {
+  res.send(leaderboard);
+});
+
+// updates leaderboard every time someone eliminates target. Eventually should remove that person from the player list
+secureApiRouter.post('/updateLeaderboard', (req, res) => {
+  let newPosition = req.body;
+  leaderboard.push(newPosition);
+  res.send(leaderboard);
+});
+
+function setAuthCookie(res, authToken) { // middleware?? to make the cookie secure to access.
+  res.cookie(authCookieName, authToken, {
+    secure: true, // only HTTPS
+    httpOnly: true, // browser javascript can't read the cookie
+    sameSite: 'strict', // only the domain that generates the cookie can view it
+  });
+}
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
