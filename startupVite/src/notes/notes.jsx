@@ -1,6 +1,17 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 
 export function Notes() {
+
+    const [notes, setNotes] = useState('');
+    useEffect(() => {
+        console.log(`Notes: ${notes}`);
+    }, [notes]);
+
+    const handleInput = (e) => {
+        setNotes(e.currentTarget.textContent);
+    };
+
     return (
         <main>
             <h1>Notes</h1>
@@ -9,10 +20,7 @@ export function Notes() {
             remembered even when the user logins out and visits later
             </p>
 
-            <div className="notes" contenteditable="true">
-                Write notes here. Not functional yet, but will be stored persistently between visits.<br />
-                Eventually, with JS I might have placeholder text here the way there is in texarea boxes in forms.
-            </div>
+            <div className="notes" contentEditable onInput={handleInput}></div>
         </main>
     );
 }
