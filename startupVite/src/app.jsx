@@ -34,7 +34,7 @@ export default function App() {
         <Route path="/index" element={<Home userName={userName} />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/notes" element={<Notes />} />
+        <Route path="/notes" element={<Notes userName={userName} />} />
         <Route path="/" element={<Login 
           userName={userName}
           authState={authState}

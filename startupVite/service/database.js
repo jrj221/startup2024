@@ -8,6 +8,7 @@ const client = new MongoClient(url, { tls: true, serverSelectionTimeoutMS: 3000,
 const db = client.db('startup');
 const userCollection = db.collection('user');
 const leaderboardCollection = db.collection('leaderboard');
+const notesCollection = db.collection('notes');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -39,6 +40,18 @@ async function createUser(email, password) {
     return user;
 }
 
+async function updateNotes(userName, notes) {
+    const personalNotes = {
+        userName: userName,
+        notes:  notes,
+    };
+    await notesCollection.insertOne(personalNotes);
+}
+
+async function getNotes(userName) {
+    return notesCollection.find({userName: userName}).toArray();
+}
+
 async function updateLeaderboard(userName, date) {
     const leaderboardPerson = {
         userName: userName,
@@ -60,6 +73,8 @@ module.exports = {
     getUser,
     getUserByToken,
     createUser,
+    updateNotes,
+    getNotes,
     updateLeaderboard,
     getLeaderboard,
 }
