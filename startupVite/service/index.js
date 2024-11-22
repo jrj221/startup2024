@@ -39,7 +39,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 // helps login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = await getUser(req.body.email); // why don't we need DB. here like we do in /create ?
+    const user = await DB.getUser(req.body.email); 
     if (user) {
       if (await bcrypt.compare(req.body.password, user.password)) { //if password is correct
         setAuthCookie(res, user.token);

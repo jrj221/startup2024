@@ -35,7 +35,7 @@ export function Unauthenticated(props) {
     return (
         <form className="register">
             <div className="form-group">
-                <label for="username">Username:</label>
+                <label htmlFor="username">Username:</label>
                 <input 
                     type="text" className="register form-control" 
                     id="username" value={userName} 
@@ -43,7 +43,7 @@ export function Unauthenticated(props) {
                 />
             </div>
             <div className="form-group">
-                <label for="password">Password:</label>
+                <label htmlFor="password">Password:</label>
                 <input 
                     type="password" className="register form-control" 
                     onChange={(e) => setPassword(e.target.value)} id="password" 

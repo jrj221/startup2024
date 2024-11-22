@@ -22,6 +22,10 @@ function getUser(email) {
     return userCollection.findOne({email: email});
 }
 
+function getUserByToken(token) {
+    return userCollection.findOne({ token: token });
+}
+
 async function createUser(email, password) {
     // bcrypt hashes the password before it is inserted to protect it from hackers
     const passwordHash = await bcrypt.hash(password, 10);
@@ -54,6 +58,7 @@ async function getLeaderboard() {
 
 module.exports = {
     getUser,
+    getUserByToken,
     createUser,
     updateLeaderboard,
     getLeaderboard,

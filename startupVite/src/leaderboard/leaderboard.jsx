@@ -12,7 +12,14 @@ export function Leaderboard() {
     useEffect(() => {
         fetch('/api/leaderboard')
           .then((response) => response.json())
-          .then((leaderboard) => setLeaderboard(leaderboard));
+          .then((leaderboard) => {
+            const updatedLeaderboard = leaderboard.map(person => ({
+                ...person,
+                date: new Date(person.date)
+            }));
+            console.log('Received leaderboard:', updatedLeaderboard); // test
+            setLeaderboard(updatedLeaderboard);
+          });
       }, []);
 
       const leaderboard_rows = [];
@@ -34,8 +41,8 @@ export function Leaderboard() {
             leaderboard_rows.push(
                 <tr key={position}>
                 <td style={{ backgroundColor: podium }}>{position + 1}</td>
-                <td style={{ backgroundColor: podium }}>{person.name.split('@')[0]}</td>
-                <td style={{ backgroundColor: podium }}>{person.date.toLocaleDateString()}</td>
+                <td style={{ backgroundColor: podium }}>{person.userName.split('@')[0]}</td>
+                <td style={{ backgroundColor: podium }}>{`${person.date.toDateString()} ${person.date.toLocaleTimeString()}`}</td>
                 </tr>
           );
         }
