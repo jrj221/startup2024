@@ -42,10 +42,16 @@ async function createUser(email, password) {
 
 async function updateNotes(userName, notes) {
     const personalNotes = {
-        userName: userName,
-        notes:  notes,
+      userName: userName,
+      notes: notes,
     };
-    await notesCollection.insertOne(personalNotes);
+    console.log('test');
+    try {
+      const result = await notesCollection.insertOne(personalNotes);
+      console.log('insertion successful:', result);
+    } catch (error) {
+      console.error('Insertion failed:', error);
+    }
 }
 
 async function getNotes(userName) {

@@ -82,8 +82,14 @@ secureApiRouter.post('/updateLeaderboard', (req, res) => {
 });
 
 // update notes in database
-secureApiRouter.post('/updateNotes', (req, _res) => {
-  DB.updateNotes(req.body.userName, req.body.notes);
+secureApiRouter.post('/updateNotes', async (req, res) => {
+  try {
+    await DB.updateNotes(req.body.userName, req.body.notes);
+    res.status(200).send('Update successful');
+  } catch (error) {
+    console.error('Database update error:', error);
+    res.status(500).send('Update failed');
+  }
 });
 
 // retrieve notes from database given a username
