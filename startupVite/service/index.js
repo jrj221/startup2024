@@ -94,8 +94,13 @@ secureApiRouter.post('/updateNotes', async (req, res) => {
 
 // retrieve notes from database given a username
 secureApiRouter.get('/getNotes', async (req, res) => {
-  const notes = await DB.getNotes(req.query.userName);
-  res.json({ notes });
+  try {
+    const notes = await DB.getNotes(req.query.userName);
+    res.json(notes);
+  } catch (error) {
+    console.error('Error retrieving notes:', error);
+    res.status(500).json({ error: 'Failed to retrieve notes' });
+  }
 });
 
 function setAuthCookie(res, authToken) { // middleware?? to make the cookie secure to access.

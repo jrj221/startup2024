@@ -45,9 +45,12 @@ async function updateNotes(userName, notes) {
       userName: userName,
       notes: notes,
     };
-    console.log('test');
     try {
-      const result = await notesCollection.insertOne(personalNotes);
+      const result = await notesCollection.updateOne(
+        { userName },
+        { $set: { notes } }, // overwrites notes field
+        { upsert: true } // creates new document if none exist
+      )
       console.log('insertion successful:', result);
     } catch (error) {
       console.error('Insertion failed:', error);
@@ -55,7 +58,12 @@ async function updateNotes(userName, notes) {
 }
 
 async function getNotes(userName) {
-    return notesCollection.find({userName: userName}).toArray();
+    try {
+      return await notesCollection.find({ userName: userName }).toArray();
+    } catch (error) {
+      console.error('Error fetching notes:', error);
+      throw error;
+    }
 }
 
 async function updateLeaderboard(userName, date) {
