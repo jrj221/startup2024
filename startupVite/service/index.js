@@ -6,7 +6,7 @@ const DB = require('./database.js')
 const authCookieName = 'token';
 
 
-const port = process.argv.length > 2 ? process.argv[2] : 8080;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // converts JSON objects into JS objects, stored in req.body
 app.use(express.json());
