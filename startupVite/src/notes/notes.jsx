@@ -9,7 +9,7 @@ export function Notes() {
             remembered even when the user logins out and visits later
             </p>
 
-            <div className="notes" contenteditable="true">
+            <div className="notes" contentEditable>
                 Write notes here. Not functional yet, but will be stored persistently between visits.<br />
                 Eventually, with JS I might have placeholder text here the way there is in texarea boxes in forms.
             </div>
