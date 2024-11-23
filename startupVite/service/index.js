@@ -81,6 +81,17 @@ secureApiRouter.post('/updateLeaderboard', (req, res) => {
   DB.updateLeaderboard(req.body.userName, req.body.date); //database.js function to add to database
 });
 
+// update notes in database
+secureApiRouter.post('/updateNotes', (req, _res) => {
+  DB.updateNotes(req.body.userName, req.body.notes);
+});
+
+// retrieve notes from database given a username
+secureApiRouter.get('/getNotes', async (req, res) => {
+  const notes = await DB.getNotes(req.query.userName);
+  res.json({ notes });
+});
+
 function setAuthCookie(res, authToken) { // middleware?? to make the cookie secure to access.
   res.cookie(authCookieName, authToken, {
     secure: true, // only HTTPS
