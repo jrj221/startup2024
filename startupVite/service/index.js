@@ -1,3 +1,4 @@
+const { peerProxy } = require('./peerProxy.js');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
@@ -114,3 +115,6 @@ function setAuthCookie(res, authToken) { // middleware?? to make the cookie secu
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+// executes the main function in peerProxy.js that handles WebSocket connections
+peerProxy(httpServer); 
