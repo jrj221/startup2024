@@ -62,4 +62,4 @@ async function clearCollection(uri, dbName, collectionName) {
     }
 }
 
-listDocuments(uri, 'startup', 'notes');
+listDocuments(uri, 'startup', 'user');

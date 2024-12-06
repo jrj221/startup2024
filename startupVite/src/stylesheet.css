@@ -127,6 +127,23 @@ ul {
 .login_buttons {
   text-align: center;
 }
+form {
+  display: inline-block;
+  width: 30vw;
+}
+.form_and_image {
+  text-align: center;
+  width: 100vw;
+}
+.login_photo {
+  width: 30vw;
+  margin: 2vw;
+  vertical-align: top;
+}
+figcaption {
+  width: 30vw;
+  margin-left: 2vw;
+}
 
 
 /* Chat Elements */
