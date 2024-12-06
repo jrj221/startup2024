@@ -295,5 +295,17 @@ th, td {
   }
 
   /* Chats */
+  #chatText {
+    height: 60vh;
+    width: 80vw;
+  }
+  #nameControls, #chatControls, #newMsg {
+    width: 80vw;
+  }
 
+  /* Login */
+  figcaption {
+    margin: auto;
+    width: 70vw;
+  }
 }

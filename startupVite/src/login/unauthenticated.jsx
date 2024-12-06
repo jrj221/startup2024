@@ -53,7 +53,15 @@ export function Unauthenticated(props) {
       }
       
       function handlePhoto(e) {
-        setLoginPhotoDisplay(e.target.value ? 'inline-block' : 'none');
+        let width = window.innerWidth;
+        console.log(width);
+        if (width <= 400) {
+          setLoginPhotoDisplay('block');
+        }
+        else {
+          setLoginPhotoDisplay(e.target.value ? 'inline-block' : 'none');
+        }
+        console.log(loginPhotoDisplay);
         checkImage(e.target.value);
       }
       
