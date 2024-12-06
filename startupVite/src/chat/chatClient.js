@@ -1,8 +1,9 @@
 // Adjust the webSocket protocol to what is being used for HTTP (this sends the upgrade request)
 const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+let socket;
 
 export function setupWebSocket() {
-    const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
     // Display that we have opened the webSocket
     socket.onopen = (event) => {
@@ -41,8 +42,11 @@ export function sendMessage() {
 // Create one long list of messages
 function appendMsg(cls, from, msg) {
     const chatText = document.querySelector('#chatText');
-    console.log(chatText);
     const chatEl = document.createElement('div');
+    if (cls == 'me') {
+        chatEl.className='outgoing';
+    }
     chatEl.innerHTML = `<span class="${cls}">${from}</span>: ${msg}</div>`;
     chatText.append(chatEl);
+    chatText.scrollTop = chatText.scrollHeight;
 }

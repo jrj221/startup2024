@@ -131,11 +131,29 @@ ul {
 
 /* Chat Elements */
 .chat {
-  background-color: green;
+  height: 30vw;
+  margin: auto;
+  border-radius: 2vw;
+  padding: 1vw;
+}
+#nameControls, #chatControls {
+  margin: auto;
+  width: 70vw;
 }
 #chatText {
   background-color: white;
-  height: 100px;
+  height: 25vw;
+  width: 70vw;
+  margin: auto;
+  border-radius: 1vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  padding: 1vw;
+  color: black;
+  overflow: scroll;
+}
+#newMsg {
+  width: 70vw;
 }
 .friend {
   color: red;
@@ -145,6 +163,9 @@ ul {
 }
 .me {
   color: green;
+}
+.outgoing {
+  text-align: right;
 }
 
 /* Registration Elements */ 

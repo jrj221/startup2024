@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { setupWebSocket, sendMessage } from './chatClient.js';
+import React, { useEffect, useState } from 'react';
+import { setupWebSocket, sendMessage } from './chatClient.js';  
 
 export function Chat() {
+    const [msgPlaceholder, setMsgPlaceholder] = useState('Name Required');
+
     useEffect(() => {
         const socket = setupWebSocket();
 
@@ -17,6 +19,7 @@ export function Chat() {
         if (chatControls && myName) {
             myName.addEventListener('keyup', (e) => {
                 chatControls.disabled = myName.value === '';
+                setMsgPlaceholder(chatControls.disabled ? 'Name Required' : 'Enter message...');
             });
         }
 
@@ -30,20 +33,15 @@ export function Chat() {
 
     return (
         <main>
-            <h1>Chats</h1>
+            <h1>Chat</h1>
             <div className="chat">
-                <div>
-                    <fieldset id="nameControls">
-                        <legend>My Name</legend>
-                        <input id="myName" type="text" />
-                    </fieldset>
-                </div>
-                <fieldset id="chatControls" disabled>
-                    <legend>Chat</legend>
-                    <input id="newMsg" type="text" />
-                    <button onClick={sendMessage}>Send</button>
+                <fieldset id="nameControls">
+                    <input id="myName" type="text" placeholder='Name'/>
                 </fieldset>
                 <div id="chatText"></div>
+                <fieldset id="chatControls" disabled>
+                    <input id="newMsg" type="text" placeholder={msgPlaceholder}/>
+                </fieldset>
             </div>
         </main>
     );
