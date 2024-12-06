@@ -130,7 +130,10 @@ ul {
 
 
 /* Chat Elements */
-.chatText {
+.chat {
+  background-color: green;
+}
+#chatText {
   background-color: white;
   height: 100px;
 }
@@ -142,11 +145,6 @@ ul {
 }
 .me {
   color: green;
-}
-
-input.message {
-  border-radius: 10px;
-  float: right;
 }
 
 /* Registration Elements */ 

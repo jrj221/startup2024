@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { sendMessage } from './chatClient.js';
+import { setupWebSocket, sendMessage } from './chatClient.js';
 
 export function Chat() {
     useEffect(() => {
+        const socket = setupWebSocket();
+
         const input = document.querySelector('#newMsg');
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -20,30 +22,29 @@ export function Chat() {
 
         // Cleanup to remove event listeners when component unmounts
         return () => {
-            if (input) input.removeEventListener('keydown', sendMessage);
-            if (myName) myName.removeEventListener('keyup', sendMessage);
+            input.removeEventListener('keydown', sendMessage);
+            myName.removeEventListener('keyup', sendMessage);
+            socket.close();
         };
-    }, []);  // Empty dependency array triggers on mount
+    }, []);
 
     return (
         <main>
             <h1>Chats</h1>
-            <p>
-                WebSocket data will be here since I want the chats to update 
-                in realtime when other users send replies.
-            </p>
-            <div>
-                <fieldset id="nameControls">
-                    <legend>My Name</legend>
-                    <input id="myName" type="text" />
+            <div className="chat">
+                <div>
+                    <fieldset id="nameControls">
+                        <legend>My Name</legend>
+                        <input id="myName" type="text" />
+                    </fieldset>
+                </div>
+                <fieldset id="chatControls" disabled>
+                    <legend>Chat</legend>
+                    <input id="newMsg" type="text" />
+                    <button onClick={sendMessage}>Send</button>
                 </fieldset>
+                <div id="chatText"></div>
             </div>
-            <fieldset id="chatControls" disabled>
-                <legend>Chat</legend>
-                <input id="newMsg" type="text" />
-                <button onClick={sendMessage}>Send</button>
-            </fieldset>
-            <div id="chatText"></div>
         </main>
     );
 }
