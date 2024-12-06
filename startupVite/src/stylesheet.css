@@ -130,6 +130,7 @@ ul {
 form {
   display: inline-block;
   width: 30vw;
+  vertical-align: top;
 }
 .form_and_image {
   text-align: center;

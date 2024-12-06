@@ -2,7 +2,6 @@ const { MongoClient } = require('mongodb');
 const uuid = require('uuid');
 const bcrypt = require('bcrypt');
 const config = require('./dbConfig.json');
-
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url, { tls: true, serverSelectionTimeoutMS: 3000, autoSelectFamily: false, });
 const db = client.db('startup');
@@ -27,13 +26,13 @@ function getUserByToken(token) {
     return userCollection.findOne({ token: token });
 }
 
-async function createUser(email, password) {
+async function createUser(email, password, photo) {
     // bcrypt hashes the password before it is inserted to protect it from hackers
     const passwordHash = await bcrypt.hash(password, 10);
-
     const user = {
         email: email,
         password: passwordHash,
+        photo: photo,
         token: uuid.v4(), // generates a unique, random token
     };
     await userCollection.insertOne(user);

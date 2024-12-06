@@ -27,11 +27,13 @@ app.use(`/api`, apiRouter);
 
 // helps create a new user
 apiRouter.post('/auth/create', async (req, res) => {
+  console.log('test');
     if (await DB.getUser(req.body.email)) { // executes if it is already in the object
       res.status(409).send({ msg: 'Existing user' }); 
     } 
     else { // executes if user is not in the object (user doesn't exist yet)
-      const user = await DB.createUser(req.body.email, req.body.password);
+      console.log(req.body.email);
+      const user = await DB.createUser(req.body.email, req.body.password, req.body.photo);
       setAuthCookie(res, user.token); // ?? creates cookie to store user info
   
       res.send({ id: user._id}); // ID associated with the database entry
