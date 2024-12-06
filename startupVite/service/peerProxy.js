@@ -5,7 +5,7 @@ function peerProxy(httpServer) {
   // Create a websocket object. noServer means that it waits to connect until a upgrade request is received
   const wss = new WebSocketServer({ noServer: true });
 
-  // Handle the protocol upgrade from HTTP to WebSocket
+  // Handle the protocol upgrade from HTTP to WebSocket (when a new websocket object is made)
   httpServer.on('upgrade', (request, socket, head) => {
     wss.handleUpgrade(request, socket, head, function done(ws) {
       wss.emit('connection', ws, request);

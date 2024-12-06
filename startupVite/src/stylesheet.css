@@ -130,66 +130,20 @@ ul {
 
 
 /* Chat Elements */
-.chats {
-  padding: 10px;
-  display: inline-block;
+.chatText {
   background-color: white;
-  width: 30vw;
-  border-radius: 10px;
-  height: 500px;
-  margin-left: 40px;
-  overflow: scroll;
+  height: 100px;
 }
-.chats_mobile {
-  display: none;
+.friend {
+  color: red;
 }
-.chat_name {
-  padding: 5px;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  height: 60px;
-  border: 2px solid gray;
-  margin: 0;
+.system {
+  color: blue;
 }
-.current_chat {
-  width: 60vw;
-  background-color: white;
-  display: inline-block;
-  border-radius: 10px;
-  vertical-align: top;
-  margin-left: 30px;
-  height: 500px;
-  margin-bottom: 30px;
-  overflow: scroll;
+.me {
+  color: green;
 }
-div.incoming {
-  text-align: left;
-}
-p.incoming {
-  display: inline-block;
-  background-color: #EAEAEC;
-  padding: 5px;
-  width: fit-content;
-  color: black;
-  border: solid;
-  margin: 10px;
-  border-radius: 10px;
-}
-div.outgoing {
-  text-align: right;
-  padding: 0;
-}
-p.outgoing {
-  display: inline-block;
-  background-color: #1287FF;
-  padding: 5px;
-  margin: 10px;
-  width: fit-content;
-  color: black;
-  border: solid;
-  border-radius: 10px;
-}
+
 input.message {
   border-radius: 10px;
   float: right;
@@ -305,19 +259,5 @@ th, td {
   }
 
   /* Chats */
-  .chats {
-    display: none;
-  }
-  .chats_mobile {
-    display: block;
-    text-align: center;
-  }
-  .chats_button {
-    width: 90vw;
-    background-color: white;
-  }
-  .current_chat {
-    width: 90vw;
-    margin-left: 2vw;
-  }
+
 }

@@ -7,7 +7,7 @@ const DB = require('./database.js')
 const authCookieName = 'token';
 
 
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const port = process.argv.length > 2 ? process.argv[2] : 8080;
 
 // converts JSON objects into JS objects, stored in req.body
 app.use(express.json());
@@ -112,9 +112,9 @@ function setAuthCookie(res, authToken) { // middleware?? to make the cookie secu
   });
 }
 
-app.listen(port, () => {
+server = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
 // executes the main function in peerProxy.js that handles WebSocket connections
-peerProxy(httpServer); 
+peerProxy(server); 
