@@ -79,3 +79,12 @@ For this deliverable I made account creation and login functional and stored use
 - [x] **existing user** - Allows existing users to log in and out. 
 - [x] **Use MongoDB to store credentials** - Stores user information such as email, password, and authentication token.
 - [x] **Restricts functionality** - Created a secureApiRouter that only allows logged in users to update the leaderboard. Furthermore, users must be authenticated before the home page will even render.
+
+## WebSocket deliverable
+
+For this deliverable I used webSocket to create a Chat feature.
+
+- [x] **Backend listens for WebSocket connection** - done!
+- [x] **Frontend makes WebSocket connection** - done!
+- [x] **Data sent over WebSocket connection** - done!
+- [x] **WebSocket data displayed** - You can chat with other users in real time! Very cool.

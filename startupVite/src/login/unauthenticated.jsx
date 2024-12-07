@@ -64,7 +64,7 @@ export function Unauthenticated(props) {
       
     return (
       <>
-        <p style={{ width: '90vw', textAlign: 'center'}}><em>Note: If you already have an account, leave the photo URL space blank and click LOGIN</em></p>
+        <p className="loginNote"><em>Note: If you already have an account, leave the photo URL space blank and click LOGIN</em></p>
         <div className="form_and_image">
           <form className="register">
               <div className="form-group">

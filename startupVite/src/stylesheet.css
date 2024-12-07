@@ -129,6 +129,11 @@ ul {
 .login_buttons {
   text-align: center;
 }
+.loginNote {
+  width: 90vw;
+  text-align: center;
+  margin: auto;
+}
 form {
   display: inline-block;
   width: 30vw;
@@ -295,6 +300,12 @@ th, td {
   /* Leaderboard */
   .leaderboard {
     width: 80vw;
+  }
+
+  /* Login */
+  .loginNote {
+    text-align: center;
+    margin-left: auto;
   }
 
   /* Chats */

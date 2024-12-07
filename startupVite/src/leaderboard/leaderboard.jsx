@@ -57,11 +57,6 @@ export function Leaderboard() {
     return (
         <main>
             <h1>The Leaderboard</h1>
-            <p className="comments">
-                WebSocket data will be used here since I want the leaderboard to 
-                be updated in realtime when changes are made to rankings. Perhaps a database
-                is needed here as well to store the leaderboard content?
-            </p>
             
             <table className='table leaderboard'>
                 <thead className='table-dark'>
