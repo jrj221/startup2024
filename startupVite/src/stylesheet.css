@@ -106,6 +106,8 @@ ul {
   padding: 15px;
   margin: auto;
   width: 39vw;
+  height: 39vw;
+  object-fit: cover;
   border-radius: 40px;
   margin-top: 2vh;
 }

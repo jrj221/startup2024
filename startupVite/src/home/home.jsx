@@ -42,44 +42,74 @@ export function Home({ userName }) {
     return () => clearInterval(interval); // de-allocates memory for the timer once the page component changes (no memory leaks)
   }, []); // empty dependency array makes it so it won't execute for each render (which would be redundant considering we have an interval)
 
-async function saveLeaderboardPosition() {
-  const date = new Date();
-  const newPerson = {userName: userName, date: date };
+  async function saveLeaderboardPosition() {
+    const date = new Date();
+    const newPerson = {userName: userName, date: date };
 
-  await fetch('/api/updateLeaderboard', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(newPerson),
-  });
-}
+    await fetch('/api/updateLeaderboard', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newPerson),
+    });
+  }
 
-const [target, setTarget] = useState(['MR BEAST', 'https://shorturl.at/aRkQD']);
+  useEffect(() => { // current target rerenders every time you open/refresh the page
+    get_target();
+  }, []);
 
-function eliminate() {
-  fetch('/api/eliminatePlayer', {
-    method: 'put',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ target_name: target[0] }) // Send userName in the body
-  })
-  .then(response => response.json())
-  .then(data => {
-    setTarget(['Target Eliminated', 'https://shorturl.at/SrzJ8'])
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-}
+  const [target, setTarget] = useState(['MR BEAST', 'https://shorturl.at/aRkQD']);
 
-function get_target() {
-  fetch(`/api/getTarget?userName=${userName}`)
-  .then(response => response.json())
-  .then(data => {
-    setTarget([data[0], data[1]])
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-}
+  function eliminate() {
+    console.log('eliminate');
+    console.log(target[0]);
+    fetch('/api/eliminatePlayer', {
+      method: 'put',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ target_name: target[0] }) // Send userName in the body
+    })
+    .then(response => response.json())
+    .then(data => {
+      setTarget(['Target Eliminated', 'https://shorturl.at/SrzJ8'])
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
+  function get_target() {
+    fetch(`/api/getTarget?userName=${userName}`)
+    .then(response => response.json())
+    .then(data => {
+      setTarget([data[0], data[1]])
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+  function newRound() { // reshuffles targets based on remaining players
+    fetch('/api/newRound', { method: 'POST' })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.message);
+      get_target(); 
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+  function newGame() { // resets players to start a new game
+    fetch('/api/newGame', { method: 'POST' })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.message);
+      get_target();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
   
   return (   
     <main role="main">
@@ -100,7 +130,10 @@ function get_target() {
       </div>
     <div className="target">
       <button className="privacy_button" onClick={handleClick}><img className="privacy_logo" src="https://shorturl.at/o7x5o" /></button>
-      <button className="resetTargets" onClick={get_target}>RESET TARGETS</button>
+      <div>
+        <button className="resetTargets" onClick={newRound}>NEW ROUND</button>
+        <button className="resetTargets" onClick={newGame}>NEW GAME</button>
+      </div>
       <img className="target_photo" 
         src={target[1]} 
         style={{ filter: privacy === "private" ? 'blur(50px)' : 'none' }}/>

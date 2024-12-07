@@ -107,6 +107,8 @@ secureApiRouter.get('/getNotes', async (req, res) => {
 
 secureApiRouter.put('/eliminatePlayer', (req, res) => {
   try {
+    console.log('endpoint eliminate');
+    console.log(req.body.target_name);
     GM.eliminate_player(req.body.target_name);
     res.status(200).json({ message: 'Player eliminated successfully' });
   } catch (error) {
@@ -124,6 +126,27 @@ secureApiRouter.get('/getTarget', async (req, res) => {
     res.status(500).json({ error: 'Failed to retrieve target' });
   }
 });
+
+secureApiRouter.post('/newRound', async (req, res) => {
+  try {
+    await GM.newRound(); //reshuffles targets among remaining players
+    res.status(200).json({ message: 'Targets assigned successfully' });
+  } catch (error) {
+    console.error('Error assigning targets:', error);
+    res.status(500).json({ error: 'Failed to assign targets' });
+  }
+});
+
+secureApiRouter.post('/newGame', async (req, res) => {
+  try {
+    await GM.newGame(); // players is reset
+    res.status(200).json({ message: 'Game reset successfully' });
+  } catch (error) {
+    console.error('Error resetting game:', error);
+    res.status(500).json({ error: 'Failed to reset game' });
+  }
+});
+
 
 function setAuthCookie(res, authToken) { // middleware?? to make the cookie secure to access.
   res.cookie(authCookieName, authToken, {
