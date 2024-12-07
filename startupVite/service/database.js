@@ -18,6 +18,15 @@ const notesCollection = db.collection('notes');
     process.exit(1);
 });
 
+async function getPlayers() {
+  const usersArray = await userCollection.find({}).toArray();
+  let players = []
+  usersArray.forEach(player => {
+    players.push([player.email, player.photo])
+  });
+  return players;
+}
+
 function getUser(email) {
     return userCollection.findOne({email: email});
 }
@@ -83,6 +92,7 @@ async function getLeaderboard() {
 }
 
 module.exports = {
+    getPlayers,
     getUser,
     getUserByToken,
     createUser,

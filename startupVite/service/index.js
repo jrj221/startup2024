@@ -3,7 +3,8 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
-const DB = require('./database.js')
+const DB = require('./database.js');
+const GM = require('./game_module.js');
 const authCookieName = 'token';
 
 
@@ -27,12 +28,10 @@ app.use(`/api`, apiRouter);
 
 // helps create a new user
 apiRouter.post('/auth/create', async (req, res) => {
-  console.log('test');
     if (await DB.getUser(req.body.email)) { // executes if it is already in the object
       res.status(409).send({ msg: 'Existing user' }); 
     } 
     else { // executes if user is not in the object (user doesn't exist yet)
-      console.log(req.body.email);
       const user = await DB.createUser(req.body.email, req.body.password, req.body.photo);
       setAuthCookie(res, user.token); // ?? creates cookie to store user info
   
@@ -106,13 +105,33 @@ secureApiRouter.get('/getNotes', async (req, res) => {
   }
 });
 
+secureApiRouter.put('/eliminatePlayer', (req, res) => {
+  try {
+    GM.eliminate_player(req.body.target_name);
+    res.status(200).json({ message: 'Player eliminated successfully' });
+  } catch (error) {
+    console.error('Error eliminating player:', error);
+    res.status(500).json({ error: 'Failed to eliminate player' });
+  }
+});
+
+secureApiRouter.get('/getTarget', async (req, res) => {
+  try {
+    const target = await GM.get_target(req.query.userName);
+    res.json(target);
+  } catch (error) {
+    console.error('Error retrieving target:', error);
+    res.status(500).json({ error: 'Failed to retrieve target' });
+  }
+});
+
 function setAuthCookie(res, authToken) { // middleware?? to make the cookie secure to access.
   res.cookie(authCookieName, authToken, {
     secure: true, // only HTTPS
     httpOnly: true, // browser javascript can't read the cookie
     sameSite: 'strict', // only the domain that generates the cookie can view it
   });
-}
+};
 
 server = app.listen(port, () => {
     console.log(`Listening on port ${port}`);

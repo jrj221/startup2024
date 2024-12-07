@@ -53,6 +53,33 @@ async function saveLeaderboardPosition() {
   });
 }
 
+const [target, setTarget] = useState(['MR BEAST', 'https://shorturl.at/aRkQD']);
+
+function eliminate() {
+  fetch('/api/eliminatePlayer', {
+    method: 'put',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ target_name: target[0] }) // Send userName in the body
+  })
+  .then(response => response.json())
+  .then(data => {
+    setTarget(['Target Eliminated', 'https://shorturl.at/SrzJ8'])
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
+function get_target() {
+  fetch(`/api/getTarget?userName=${userName}`)
+  .then(response => response.json())
+  .then(data => {
+    setTarget([data[0], data[1]])
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
   
   return (   
     <main role="main">
@@ -73,12 +100,13 @@ async function saveLeaderboardPosition() {
       </div>
     <div className="target">
       <button className="privacy_button" onClick={handleClick}><img className="privacy_logo" src="https://shorturl.at/o7x5o" /></button>
+      <button className="resetTargets" onClick={get_target}>RESET TARGETS</button>
       <img className="target_photo" 
-        src="https://shorturl.at/aRkQD" 
+        src={target[1]} 
         style={{ filter: privacy === "private" ? 'blur(50px)' : 'none' }}/>
       <div>
         <p style={{ display: privacy === "private" ? 'inline-block' : 'none' }}><b>[REDACTED]</b></p>
-        <p style={{ display: privacy === "public" ? 'inline-block' : 'none' }}>MR BEAST | </p>
+        <p style={{ display: privacy === "public" ? 'inline-block' : 'none' }}>{target[0]} | </p>
         <button 
           onClick={showPopup} 
           style={{ display: privacy === "public" ? 'inline-block' : 'none' }} 
@@ -94,7 +122,7 @@ async function saveLeaderboardPosition() {
           <h4>This action cannot be undone</h4>
           <div>
             <button onClick={hidePopup}>Go back</button>
-            <button className="elimination_button" onClick={() => { hidePopup(); saveLeaderboardPosition()} }>ELIMINATE</button>
+            <button className="elimination_button" onClick={() => { hidePopup(); saveLeaderboardPosition(); eliminate()} }>ELIMINATE</button>
           </div>
         </div>)}
     </div>
