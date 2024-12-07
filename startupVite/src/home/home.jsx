@@ -111,17 +111,69 @@ export function Home({ userName }) {
     });
   }
   
+  function countdown() {
+    let now = new Date();
+    let total_seconds = 
+      ((8 - now.getDay()) * 24 * 60 * 60) - 
+      (now.getHours() * 60 * 60) - 
+      (now.getMinutes() * 60) 
+      - now.getSeconds();
+    let days_left = Math.floor(total_seconds / (24 * 60 * 60));
+    let hours_left = Math.floor((total_seconds % (24 * 60 * 60)) / (60 * 60));
+    let minutes_left = Math.floor((total_seconds % (60 * 60)) / 60);
+    let seconds_left = total_seconds % 60;
+    return { days_left, hours_left, minutes_left, seconds_left };
+  }
+
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  
+  useEffect(() => {
+    const { days_left, hours_left, minutes_left, seconds_left } = countdown();
+    setDays(days_left);
+    setHours(hours_left);
+    setMinutes(minutes_left);
+    setSeconds(seconds_left);
+
+    const intervalId = setInterval(() => {
+        setSeconds(prevSeconds => {
+            if (prevSeconds === 0) {
+                setMinutes(prevMinutes => {
+                    if (prevMinutes === 0) {
+                        setHours(prevHours => {
+                            if (prevHours === 0) {
+                                setDays(prevDays => prevDays - 1);
+                                return 23;
+                            }
+                            return prevHours - 1;
+                        });
+                        return 59;
+                    }
+                    return prevMinutes - 1;
+                });
+                return 59;
+            }
+            return prevSeconds - 1;
+        });
+    }, 1000);
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (   
     <main role="main">
       <div className="mobile_countdown">
           <span className="unit">YOU HAVE</span><br />
-          <span className="time">5 </span><span className="unit">days </span><span className="time">14 </span><span className="unit">hours </span><span className="time">48 </span><span className="unit">seconds</span><br />
+          <span className="time">{days} </span><span className="unit">days </span><span className="time">{hours} </span><span className="unit">hours </span><span className="time">{minutes} </span><span className="unit">minutes </span><span className="time">{seconds} </span><span className="unit">seconds</span><br />
           <span className="unit">TO COMPLETE THIS WEEK'S CONTRACT</span>
         </div>
       <div className="countdown_and_weather">
         <div className="countdown">
           <span className="unit">YOU HAVE</span><br />
-          <span className="time">5 </span><span className="unit">days </span><span className="time">14 </span><span className="unit">hours </span><span className="time">48 </span><span className="unit">seconds</span><br />
+          <span className="time">{days} </span><span className="unit">days </span><span className="time">{hours} </span><span className="unit">hours </span><span className="time">{minutes} </span><span className="unit">minutes </span><span className="time">{seconds} </span><span className="unit">seconds</span><br />
           <span className="unit">TO COMPLETE THIS WEEK'S CONTRACT</span>
         </div>
         <div className="forecast">
@@ -160,11 +212,6 @@ export function Home({ userName }) {
         </div>)}
     </div>
     </div>
-
-    <p className="comments">  
-        Does a countdown count as a third party service call?
-            Otherwise I'll have a third party call to the weather 
-        so you know if you need a rain jacket to go hunt your target &#129335;</p>
     </main>
   );
 }
